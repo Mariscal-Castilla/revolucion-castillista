@@ -6,7 +6,7 @@ import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import Image from '@/components/Image'
-import Tag from '@/components/Tag'
+import Tag from '@/components/Categories'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 

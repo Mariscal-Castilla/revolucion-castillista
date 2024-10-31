@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'Revolución Castillista',
   author: 'Anónimo',
-  headerTitle: 'Noticiero Castillista',
+  headerTitle: 'Revolución Castillista',
   description: 'Espacio informativo',
   language: 'es-ES',
   theme: 'system', // system, dark or light
