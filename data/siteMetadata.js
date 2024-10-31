@@ -7,7 +7,7 @@ const siteMetadata = {
   language: 'es-ES',
   theme: 'system',
   siteUrl: 'https://rc.zioo.space'
-  siteRepo: 'https://github.com/tuusuario/revolucion-castillista', 
+  siteRepo: 'https://github.com/al-e-dev/rc', 
   siteLogo: ${process.env.BASE_PATH || ''}/static/images/logo.png,
   socialBanner: ${process.env.BASE_PATH || ''}/static/images/twitter-card.png,
   mastodon: '', 
