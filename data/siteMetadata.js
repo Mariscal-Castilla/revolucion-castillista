@@ -10,7 +10,7 @@ const siteMetadata = {
   siteUrl: 'https://rc.zioo.space',
   siteRepo: 'https://github.com/Mariscal-Castilla/revolucion-castillista',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
-  socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
+  socialBanner: `${process.env.BASE_PATH || ''}/static/images/port.jpg`,
   mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'ceocastillista@proton.me',
   github: 'https://github.com/Mariscal-Castilla',
