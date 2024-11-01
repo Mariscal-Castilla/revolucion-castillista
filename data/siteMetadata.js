@@ -1,9 +1,10 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'Revolución Castillista',
-  author: 'Anónimo',
+  author: 'Tecnología Con Todo',
   headerTitle: 'Revolución Castillista',
-  description: 'Espacio informativo',
+  page: 'Mariscal Castilla',
+  description: 'Espacio informativo dedicado a la Ética',
   language: 'es-ES',
   theme: 'system', // system, dark or light
   siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',

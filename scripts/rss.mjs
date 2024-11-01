@@ -11,13 +11,13 @@ const outputFolder = process.env.EXPORT ? 'out' : 'public'
 
 const generateRssItem = (config, post) => `
   <item>
-    <guid>${config.siteUrl}/blog/${post.slug}</guid>
+    <guid>${config.siteUrl}/post/${post.slug}</guid>
     <title>${escape(post.title)}</title>
-    <link>${config.siteUrl}/blog/${post.slug}</link>
-    ${post.summary && `<description>${escape(post.summary)}</description>`}
+    <link>${config.siteUrl}/post/${post.slug}</link>
+    ${post.summary ? `<description>${escape(post.summary)}</description>` : ''}
     <pubDate>${new Date(post.date).toUTCString()}</pubDate>
     <author>${config.email} (${config.author})</author>
-    ${post.tags && post.tags.map((t) => `<category>${t}</category>`).join('')}
+    ${post.tags ? post.tags.map((t) => `<category>${t}</category>`).join('') : ''}
   </item>
 `
 
@@ -25,7 +25,7 @@ const generateRss = (config, posts, page = 'feed.xml') => `
   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
       <title>${escape(config.title)}</title>
-      <link>${config.siteUrl}/blog</link>
+      <link>${config.siteUrl}/post</link>
       <description>${escape(config.description)}</description>
       <language>${config.language}</language>
       <managingEditor>${config.email} (${config.author})</managingEditor>
@@ -39,16 +39,17 @@ const generateRss = (config, posts, page = 'feed.xml') => `
 
 async function generateRSS(config, allBlogs, page = 'feed.xml') {
   const publishPosts = allBlogs.filter((post) => post.draft !== true)
-  // RSS for blog post
   if (publishPosts.length > 0) {
     const rss = generateRss(config, sortPosts(publishPosts))
-    writeFileSync(`./${outputFolder}/${page}`, rss)
+    const rssFilePath = path.join(outputFolder, page)
+    mkdirSync(path.dirname(rssFilePath), { recursive: true })
+    writeFileSync(rssFilePath, rss)
   }
 
   if (publishPosts.length > 0) {
     for (const tag of Object.keys(tagData)) {
-      const filteredPosts = allBlogs.filter((post) =>
-        post.tags.map((t) => slug(t)).includes(tag)
+      const filteredPosts = allBlogs.filter(
+        (post) => post.tags && post.tags.map((t) => slug(t)).includes(tag)
       )
       const rss = generateRss(config, filteredPosts, `tags/${tag}/${page}`)
       const rssPath = path.join(outputFolder, 'tags', tag)
@@ -60,6 +61,8 @@ async function generateRSS(config, allBlogs, page = 'feed.xml') {
 
 const rss = () => {
   generateRSS(siteMetadata, allBlogs)
-  console.log('RSS feed generated...')
+    .then(() => console.log('RSS feed generated...'))
+    .catch((error) => console.error('Error generating RSS feed:', error))
 }
+
 export default rss

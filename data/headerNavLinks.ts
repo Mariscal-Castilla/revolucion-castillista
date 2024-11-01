@@ -1,6 +1,7 @@
 const headerNavLinks = [
-  { href: '/', title: 'Hello Word' },
-  { href: '/home', title: 'Inicio' },
+  { href: '/', title: 'Inicio' },
+  { href: '/post', title: 'Publicaciones' },
+  // { href: '/categories', title: 'Categorías' },
 ]
 
 export default headerNavLinks
